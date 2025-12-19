@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Event Portal</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="topbar">
+  <div class="logo">LOGO</div>
+  <div class="brand">Event Portal</div>
+  <div class="user">
+    Welcome User ▾
+    <div class="dropdown">
+      <a href="#">Profile</a>
+      <a href="login.html">Logout</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= MAIN ================= -->
+<main class="container">
+
+  <!-- ===== STEP HEADER ===== -->
+  <section class="card header-card">
+    <h2>Event Portal</h2>
+
+    <div class="steps" id="steps">
+      <div class="step active" data-step="0">
+        <div class="step-icon">👤</div>
+        <div class="step-label">Event Details</div>
+      </div>
+      <div class="step" data-step="1">
+        <div class="step-icon">📄</div>
+        <div class="step-label">Event Documents</div>
+      </div>
+      <div class="step" data-step="2">
+        <div class="step-icon">🎤</div>
+        <div class="step-label">Guest & News</div>
+      </div>
+      <div class="step" data-step="3">
+        <div class="step-icon">🧾</div>
+        <div class="step-label">NAAC Details</div>
+      </div>
+      <div class="step" data-step="4">
+        <div class="step-icon">🔍</div>
+        <div class="step-label">Preview</div>
+      </div>
+    </div>
+
+    <div class="progress-bar">
+      <div id="progress"></div>
+    </div>
+  </section>
+
+  <!-- ===== FORM CARD ===== -->
+  <section class="card form-card">
+    <form id="eventForm">
+
+      <!-- ================= STEP 0 ================= -->
+      <div class="step-panel" data-step="0">
+
+        <h3>Event Details</h3>
+
+        <div class="row">
+          <label>
+            Title of the Event*
+            <input type="text" name="title" required>
+          </label>
+
+          <label>
+            Mode of Event*
+            <select name="mode" id="modeOfEvent" required>
+              <option value="">Select</option>
+              <option value="Online">Online</option>
+              <option value="Offline">Offline</option>
+            </select>
+          </label>
+
+          <label>
+            Type of Event*
+            <select name="type" required>
+              <option value="">Select</option>
+              <option>Research</option>
+              <option>IP (Intellectual Property)</option>
+              <option>Awareness Related</option>
+              <option>Corporate</option>
+              <option>International University Delegation Visit</option>
+              <option>Cultural & Social</option>
+              <option>Marketing</option>
+              <option>Sports</option>
+              <option>Start-up Related</option>
+              <option>Conference</option>
+              <option>FDP</option>
+              <option>MDP</option>
+              <option>Symposium</option>
+              <option>Legal Awareness</option>
+              <option>Administrative Training Programmes</option>
+              <option>Others</option>
+            </select>
+          </label>
+        </div>
+
+        <!-- ONLINE LINK (DYNAMIC) -->
+        <div class="row" id="onlineLinkRow" style="display:none">
+          <label style="flex:1">
+            Online Event Link*
+            <input type="url" name="onlineLink" id="onlineLink"
+                   placeholder="https://meeting-link">
+          </label>
+        </div>
+
+        <div class="row">
+          <label>
+            Start Date*
+            <input type="date" name="startDate" required>
+          </label>
+
+          <label>
+            End Date*
+            <input type="date" name="endDate" required>
+          </label>
+
+          <label>
+            Start Time*
+            <input type="time" name="startTime" required>
+          </label>
+
+          <label>
+            End Time*
+            <input type="time" name="endTime" required>
+          </label>
+        </div>
+
+        <div class="row">
+          <label>
+            Organiser*
+            <select name="organiser" required>
+              <option value="">Select</option>
+              <option>Department</option>
+              <option>University</option>
+              <option>Staff</option>
+              <option>School</option>
+              <option>Others</option>
+            </select>
+          </label>
+
+          <label>
+            Level*
+            <select name="level" required>
+              <option value="">Select</option>
+              <option>Department</option>
+              <option>State</option>
+              <option>National</option>
+              <option>International</option>
+              <option>University</option>
+            </select>
+          </label>
+
+          <label>
+            Target Audience*
+            <select name="audience" required>
+              <option value="">Select</option>
+              <option>Faculty</option>
+              <option>Heads and Deans</option>
+              <option>Students</option>
+              <option>External Participants</option>
+              <option>Others</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="row">
+          <label>
+            Coordinator Name*
+            <input type="text" name="coordinator" required>
+          </label>
+
+          <label style="flex:2">
+            Objective / Agenda
+            <textarea name="objective"></textarea>
+          </label>
+        </div>
+
+      </div>
+
+      <!-- ================= STEP 1 ================= -->
+      <div class="step-panel" data-step="1" style="display:none">
+        <h3>Event Documents</h3>
+
+        <div class="row">
+          <label>No. of Attendees<input type="number" name="attendees"></label>
+          <label>Attendance Sheet<input type="file" name="attendance"></label>
+          <label>Invitation<input type="file" name="invitation"></label>
+        </div>
+
+        <div class="row">
+          <label>Geo Tagged Photos<input type="file" name="geoTagged"></label>
+          <label>HD Images (ZIP)<input type="file" name="hdPic"></label>
+          <label>Feedback Report<input type="file" name="feedback"></label>
+        </div>
+
+        <div class="row">
+          <label>Circular<input type="file" name="circular"></label>
+          <label>Media Link<input type="text" name="mediaLink"></label>
+        </div>
+      </div>
+
+      <!-- ================= STEP 2 ================= -->
+      <div class="step-panel" data-step="2" style="display:none">
+        <h3>Guest & News</h3>
+
+        <div class="row">
+          <label>In Collaboration With<input type="text" name="collaboration"></label>
+          <label>Guest Link<input type="text" name="guestLink"></label>
+        </div>
+
+        <div class="row">
+          <label>Guest Name<input type="text" name="guestName"></label>
+          <label>Guest CV<input type="file" name="guestCV"></label>
+        </div>
+
+        <div class="row">
+          <label>Guest Report<input type="file" name="guestReport"></label>
+          <label>News in Media<input type="file" name="newsFile"></label>
+        </div>
+      </div>
+
+      <!-- ================= STEP 3 ================= -->
+      <div class="step-panel" data-step="3" style="display:none">
+        <h3>NAAC Details</h3>
+
+        <div class="row">
+          <label>Sample Certificate<input type="file" name="sampleCertificate"></label>
+          <label>
+            Financial Support<br>
+            <input type="radio" name="financialSupport" value="yes" checked> Yes
+            <input type="radio" name="financialSupport" value="no"> No
+          </label>
+        </div>
+
+        <div class="row" id="fundingSection">
+          <label>Funding Agency<input type="text" name="fundingAgency"></label>
+          <label>Amount<input type="number" name="fundAmount"></label>
+          <button type="button" class="small" id="addFunding">+</button>
+        </div>
+      </div>
+
+      <!-- ================= STEP 4 ================= -->
+      <div class="step-panel" data-step="4" style="display:none">
+        <h3>Event Preview</h3>
+        <div id="previewArea" class="preview-box"></div>
+        <button type="button" class="btn blue" id="downloadPdf">
+          Download PDF
+        </button>
+      </div>
+
+      <!-- ================= CONTROLS ================= -->
+      <div class="form-controls">
+        <button type="button" id="prevBtn" class="btn gray">Previous</button>
+        <button type="button" id="nextBtn" class="btn blue">Next</button>
+        <button type="submit" id="submitBtn" class="btn green" style="display:none">
+          Submit
+        </button>
+      </div>
+
+    </form>
+  </section>
+
+  <!-- ===== SAVED EVENTS ===== -->
+  <section class="card list-card">
+    <h3>Saved Events</h3>
+    <div id="savedEvents">No events saved.</div>
+  </section>
+
+</main>
+
+<script src="app.js"></script>
+
+</body>
+</html>
+
+
+
+

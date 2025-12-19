@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | Event Portal</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+  <!-- Full Screen Background -->
+  <div class="bg"></div>
+
+  <!-- Login Box -->
+  <div class="login-box">
+
+    
+    
+
+    <!-- Admin Name -->
+    <p class="admin-name">Director: Dr. Rahul Sharma</p>
+
+    <h2>Welcome! Please login to continue.</h2>
+
+    <input type="text" id="username" placeholder="Enter username">
+
+    <div class="password-box">
+      <input type="password" id="password" placeholder="Enter password">
+      <span onclick="togglePassword()">👁</span>
+    </div>
+
+    <button onclick="login()">Login</button>
+
+    <a href="#" class="forgot">Forgot password?</a>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>
